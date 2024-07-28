@@ -1,6 +1,5 @@
 import { IRestaurant } from '@/src/utils/models';
 import React from 'react';
-import { StyleSheet, Text } from 'react-native';
 import { Card } from 'react-native-paper';
 import styled from 'styled-components/native';
 
@@ -8,9 +7,18 @@ type Props = {
   restaurant?: IRestaurant;
 };
 
+const RestaurantCard = styled(Card)`
+  background-color: ${(props: any) => props.theme.colors.bg.primary};
+`;
+
+const RestaurantCardCover = styled(Card.Cover)`
+  padding: ${(props: any) => props.theme.space[3]};
+  background-color: ${(props: any) => props.theme.colors.bg.primary};
+`;
+
 const Title = styled.Text`
-  padding: 16px;
-  color: tomato;
+  padding: ${(props: any) => props.theme.space[3]};
+  color: ${({ theme }) => theme.colors.ui.error};
 `;
 
 export const RestaurantInfoCard = ({ restaurant }: Props) => {
@@ -27,22 +35,9 @@ export const RestaurantInfoCard = ({ restaurant }: Props) => {
   } = restaurant || {};
 
   return (
-    <Card elevation={5} style={styles.card}>
-      <Card.Cover key={name} style={styles.cover} source={{ uri: photos[0] }} />
+    <RestaurantCard elevation={5}>
+      <RestaurantCardCover key={name} source={{ uri: photos[0] }} />
       <Title>{name}</Title>
-    </Card>
+    </RestaurantCard>
   );
 };
-
-const styles = StyleSheet.create({
-  card: {
-    backgroundColor: 'white',
-  },
-  cover: {
-    padding: 20,
-    backgroundColor: 'white',
-  },
-  title: {
-    padding: 16,
-  },
-});

@@ -1,6 +1,7 @@
+import { Spacer } from '@/src/components/Spacer/Spacer';
 import { IRestaurant } from '@/src/utils/models';
 import React from 'react';
-import { Image, Text, View } from 'react-native';
+import { Image, Text } from 'react-native';
 import { Card } from 'react-native-paper';
 import { SvgXml } from 'react-native-svg';
 import styled from 'styled-components/native';
@@ -82,9 +83,9 @@ export const RestaurantInfoCard = ({ restaurant }: Props) => {
             {isClosedTemporarily && (
               <Text style={{ color: 'red' }}>CLOSED TEMPORARILY</Text>
             )}
-            <View style={{ paddingLeft: 16 }} />
+            <Spacer variant="left.large" />
             {isOpenNow && <SvgXml xml={open} width={20} height={20} />}
-            <View style={{ paddingLeft: 16 }} />
+            <Spacer variant="left.large" />
             <Image style={{ width: 15, height: 15 }} source={{ uri: icon }} />
           </SectionEnd>
         </Section>

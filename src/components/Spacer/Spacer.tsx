@@ -1,51 +1,41 @@
-import React from 'react';
-import styled from 'styled-components/native';
+import styled, { DefaultTheme } from 'styled-components/native';
 
-const TopSmall = styled.View`
-  margin-top: ${(props) => props.theme.space[1]};
-`;
+interface ISize {
+  [key: string]: number;
+}
 
-const TopMedium = styled.View`
-  margin-top: ${(props) => props.theme.space[2]};
-`;
+interface IPosition {
+  [key: string]: string;
+}
 
-const TopLarge = styled.View`
-  margin-top: ${(props) => props.theme.space[3]};
-`;
-
-const LeftSmall = styled.View`
-  margin-left: ${(props) => props.theme.space[1]};
-`;
-
-const LeftMedium = styled.View`
-  margin-left: ${(props) => props.theme.space[2]};
-`;
-
-const LeftLarge = styled.View`
-  margin-left: ${(props) => props.theme.space[3]};
-`;
-
-type Variant =
-  | 'top.small'
-  | 'top.medium'
-  | 'top.large'
-  | 'left.small'
-  | 'left.medium'
-  | 'left.large';
-
-export const Spacer = ({ variant }: { variant: Variant }) => {
-  switch (variant) {
-    case 'top.medium':
-      return <TopMedium />;
-    case 'top.large':
-      return <TopLarge />;
-    case 'left.small':
-      return <LeftSmall />;
-    case 'left.medium':
-      return <LeftMedium />;
-    case 'left.large':
-      return <LeftLarge />;
-    default:
-      return <TopSmall />;
-  }
+const sizesVariant: ISize = {
+  small: 1,
+  medium: 2,
+  large: 3,
 };
+
+const positionsVariant: IPosition = {
+  top: 'marginTop',
+  left: 'marginLeft',
+  right: 'marginRight',
+  bottom: 'marginBottom',
+};
+
+interface ISpacerProps {
+  size: 'small' | 'medium' | 'large';
+  position: 'top' | 'left' | 'right' | 'bottom';
+  theme: DefaultTheme;
+}
+
+const getVariant = ({ position, size, theme }: ISpacerProps) => {
+  const sizeIndex = sizesVariant[size];
+  const sizeValue = theme.space[sizeIndex];
+  const property = positionsVariant[position];
+
+  return `${property}: ${sizeValue}`;
+};
+
+export const Spacer = styled.View<ISpacerProps>`
+  ${({ size = 'small', position = 'top', theme }) =>
+    getVariant({ position, size, theme })}
+`;

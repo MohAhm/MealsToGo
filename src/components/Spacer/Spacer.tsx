@@ -1,41 +1,50 @@
-import styled, { DefaultTheme } from 'styled-components/native';
+import React from 'react';
+import styled, { DefaultTheme, useTheme } from 'styled-components/native';
 
-interface ISize {
-  [key: string]: number;
+enum ESize {
+  small = 1,
+  medium,
+  large,
 }
 
-interface IPosition {
-  [key: string]: string;
+enum EPosition {
+  top = 'marginTop',
+  left = 'marginLeft',
+  right = 'marginRight',
+  bottom = 'marginBottom',
 }
-
-const sizesVariant: ISize = {
-  small: 1,
-  medium: 2,
-  large: 3,
-};
-
-const positionsVariant: IPosition = {
-  top: 'marginTop',
-  left: 'marginLeft',
-  right: 'marginRight',
-  bottom: 'marginBottom',
-};
 
 interface ISpacerProps {
-  size: 'small' | 'medium' | 'large';
-  position: 'top' | 'left' | 'right' | 'bottom';
+  size: keyof typeof ESize;
+  position: keyof typeof EPosition;
   theme: DefaultTheme;
 }
 
 const getVariant = ({ position, size, theme }: ISpacerProps) => {
-  const sizeIndex = sizesVariant[size];
+  const sizeIndex = ESize[size];
   const sizeValue = theme.space[sizeIndex];
-  const property = positionsVariant[position];
+  const property = EPosition[position];
 
   return `${property}: ${sizeValue}`;
 };
 
-export const Spacer = styled.View<ISpacerProps>`
-  ${({ size = 'small', position = 'top', theme }) =>
-    getVariant({ position, size, theme })}
+const SpacerView = styled.View<{ variant: string }>`
+  ${({ variant }) => variant}
 `;
+
+type TSpacerProps = {
+  position?: keyof typeof EPosition;
+  size?: keyof typeof ESize;
+  children?: React.ReactNode;
+};
+
+export const Spacer = ({
+  position = 'top',
+  size = 'small',
+  children,
+}: TSpacerProps) => {
+  const theme = useTheme();
+  const variant = getVariant({ position, size, theme });
+
+  return <SpacerView variant={variant}>{children}</SpacerView>;
+};

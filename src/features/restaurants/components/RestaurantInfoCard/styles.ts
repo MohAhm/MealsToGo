@@ -3,6 +3,7 @@ import styled from 'styled-components/native';
 
 export const RestaurantCard = styled(Card)`
   background-color: ${(props: any) => props.theme.colors.bg.primary};
+  margin-bottom: ${(props: any) => props.theme.space[3]};
 `;
 
 export const RestaurantCardCover = styled(Card.Cover)`

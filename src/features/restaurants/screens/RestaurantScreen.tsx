@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { SafeAreaView, StatusBar } from 'react-native';
+import { FlatList, SafeAreaView, StatusBar } from 'react-native';
 import { Searchbar } from 'react-native-paper';
 import styled from 'styled-components/native';
 import { RestaurantInfoCard } from '../components/RestaurantInfoCard/RestaurantInfoCard';
@@ -31,9 +31,12 @@ export const RestaurantScreen = () => {
           mode="view"
         />
       </SearchContainer>
-      <SearchList>
-        <RestaurantInfoCard />
-      </SearchList>
+      <FlatList
+        data={[{ name: '1' }, { name: '2' }, { name: '3' }]}
+        renderItem={() => <RestaurantInfoCard />}
+        keyExtractor={(item) => item.name}
+        contentContainerStyle={{ padding: 16 }}
+      />
     </SafeArea>
   );
 };

@@ -29,7 +29,9 @@ export const RestaurantScreen = () => {
       <RestaurantList
         data={[{ name: '1' }, { name: '2' }, { name: '3' }]}
         renderItem={() => <RestaurantInfoCard />}
-        keyExtractor={(item: any) => item.name}
+        keyExtractor={(item: any) => {
+          return item.name;
+        }}
       />
     </SafeArea>
   );

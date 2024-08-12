@@ -5,23 +5,21 @@ import {
 } from '@expo-google-fonts/oswald';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { NavigationContainer } from '@react-navigation/native';
+import { RouteProp } from '@react-navigation/native';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar as ExpoStatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
 import { Text } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { ThemeProvider } from 'styled-components/native';
 import { SafeArea } from '../components/utility/SafeArea';
 import { RestaurantScreen } from '../features/restaurants/screens/RestaurantScreen';
 import { theme } from '../infrastructure/theme';
+import { BottomTabParamList, TAB_ICON, TabValue } from '../utils/models';
 
-const Tab = createBottomTabNavigator();
+type BottomTabRouteProp = RouteProp<BottomTabParamList>;
 
-const TAB_ICON = {
-  Restaurant: 'restaurant',
-  Settings: 'settings',
-  Map: 'map',
-};
+const Tab = createBottomTabNavigator<BottomTabParamList>();
 
 const Settings = () => (
   <SafeArea>
@@ -34,12 +32,12 @@ const Map = () => (
   </SafeArea>
 );
 
-const createScreenOptions = ({ route }) => {
+const createScreenOptions = ({ route }: { route: BottomTabRouteProp }) => {
   const iconName = TAB_ICON[route.name];
   return {
     headerShown: false,
-    tabBarIcon: ({ size, color }) => (
-      <Ionicons name={iconName} size={size} color={color} />
+    tabBarIcon: ({ size, color }: { size: number; color: string }) => (
+      <Ionicons name={iconName as TabValue} size={size} color={color} />
     ),
     tabBarActiveTintColor: 'tomato',
     tabBarInactiveTintColor: 'gray',
@@ -67,13 +65,13 @@ export default function Index() {
 
   return (
     <ThemeProvider theme={theme}>
-      <NavigationContainer independent={true}>
+      <SafeAreaProvider>
         <Tab.Navigator screenOptions={createScreenOptions}>
           <Tab.Screen name="Restaurant" component={RestaurantScreen} />
           <Tab.Screen name="Settings" component={Settings} />
           <Tab.Screen name="Map" component={Map} />
         </Tab.Navigator>
-      </NavigationContainer>
+      </SafeAreaProvider>
       <ExpoStatusBar style="auto" />
     </ThemeProvider>
   );

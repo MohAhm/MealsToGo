@@ -15,6 +15,7 @@ import { ThemeProvider } from 'styled-components/native';
 import { SafeArea } from '../components/utility/SafeArea';
 import { RestaurantScreen } from '../features/restaurants/screens/RestaurantScreen';
 import { theme } from '../infrastructure/theme';
+import { RestaurantProvider } from '../services/restaurant/RestaurantContext';
 import { BottomTabParamList, TAB_ICON, TabValue } from '../utils/models';
 
 type BottomTabRouteProp = RouteProp<BottomTabParamList>;
@@ -66,11 +67,13 @@ export default function Index() {
   return (
     <ThemeProvider theme={theme}>
       <SafeAreaProvider>
-        <Tab.Navigator screenOptions={createScreenOptions}>
-          <Tab.Screen name="Restaurant" component={RestaurantScreen} />
-          <Tab.Screen name="Settings" component={Settings} />
-          <Tab.Screen name="Map" component={Map} />
-        </Tab.Navigator>
+        <RestaurantProvider>
+          <Tab.Navigator screenOptions={createScreenOptions}>
+            <Tab.Screen name="Restaurant" component={RestaurantScreen} />
+            <Tab.Screen name="Settings" component={Settings} />
+            <Tab.Screen name="Map" component={Map} />
+          </Tab.Navigator>
+        </RestaurantProvider>
       </SafeAreaProvider>
       <ExpoStatusBar style="auto" />
     </ThemeProvider>

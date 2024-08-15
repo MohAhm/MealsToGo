@@ -1,6 +1,6 @@
 import { Spacer } from '@/src/components/Spacer/Spacer';
 import { Text } from '@/src/components/Typography/Text';
-import { IRestaurant } from '@/src/utils/models';
+import { Restaurant } from '@/src/utils/models';
 import React from 'react';
 
 import { SvgXml } from 'react-native-svg';
@@ -18,7 +18,7 @@ import {
 } from './styles';
 
 type Props = {
-  restaurant?: IRestaurant;
+  restaurant?: Restaurant;
 };
 
 export const RestaurantInfoCard = ({ restaurant }: Props) => {
@@ -28,7 +28,7 @@ export const RestaurantInfoCard = ({ restaurant }: Props) => {
     photos = [
       'https://www.foodiesfeed.com/wp-content/uploads/2019/06/top-view-for-box-of-2-burgers-home-made-600x899.jpg',
     ],
-    address = '100 some random street',
+    placeId = '100 some random street',
     isOpenNow = true,
     rating = 4,
     isClosedTemporarily = true,
@@ -38,7 +38,7 @@ export const RestaurantInfoCard = ({ restaurant }: Props) => {
 
   return (
     <RestaurantCard elevation={5}>
-      <RestaurantCardCover key={name} source={{ uri: photos[0] }} />
+      <RestaurantCardCover key={name} source={{ uri: photos[0].toString() }} />
       <Info>
         <Text>{name}</Text>
         <Section>
@@ -59,7 +59,7 @@ export const RestaurantInfoCard = ({ restaurant }: Props) => {
             </Spacer>
           </SectionEnd>
         </Section>
-        <Address>{address}</Address>
+        <Address>{placeId}</Address>
       </Info>
     </RestaurantCard>
   );

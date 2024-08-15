@@ -75,20 +75,13 @@ export interface Results {
   permanently_closed?: boolean;
 }
 
-export interface TRestaurantResponse {
-  htmlAttributions: string[];
-  nextPageToken: string;
-  results: Restaurant[];
-  status: string;
-}
-
 export interface Restaurant {
   businessStatus: string;
   geometry: Geometry;
   icon: string;
   name: string;
   openingHours?: OpeningHours;
-  photos: Photo[];
+  photos: string[];
   placeId: string;
   plusCode: PlusCode;
   priceLevel?: number;
@@ -99,6 +92,8 @@ export interface Restaurant {
   userRatingsTotal: number;
   vicinity: string;
   permanentlyClosed?: boolean;
+  isOpenNow?: boolean;
+  isClosedTemporarily?: boolean;
 }
 
 interface Geometry {
@@ -118,13 +113,6 @@ interface Viewport {
 
 interface OpeningHours {
   openNow: boolean;
-}
-
-interface Photo {
-  height: number;
-  htmlAttributions: string[];
-  photoReference: string;
-  width: number;
 }
 
 interface PlusCode {

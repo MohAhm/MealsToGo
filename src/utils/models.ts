@@ -97,18 +97,18 @@ export interface Restaurant {
 }
 
 interface Geometry {
-  location: Location;
+  location: ILocation;
   viewport: Viewport;
 }
 
-interface Location {
+interface ILocation {
   lat: number;
   lng: number;
 }
 
 interface Viewport {
-  northeast: Location;
-  southwest: Location;
+  northeast: ILocation;
+  southwest: ILocation;
 }
 
 interface OpeningHours {
@@ -118,4 +118,32 @@ interface OpeningHours {
 interface PlusCode {
   compoundCode: string;
   globalCode: string;
+}
+
+// ---------------- Location ---------------- //
+
+export interface Location {
+  results: {
+    geometry: {
+      location: {
+        lng: number;
+        lat: number;
+      };
+      viewport: {
+        northeast: {
+          lat: number;
+          lng: number;
+        };
+        southwest: {
+          lat: number;
+          lng: number;
+        };
+      };
+    };
+  }[];
+  status?: string;
+}
+
+export interface LocationsResponse {
+  [key: string]: Location;
 }

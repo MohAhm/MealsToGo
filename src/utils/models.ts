@@ -101,7 +101,7 @@ interface Geometry {
   viewport: Viewport;
 }
 
-interface ILocation {
+export interface ILocation {
   lat: number;
   lng: number;
 }

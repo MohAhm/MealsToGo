@@ -1,9 +1,9 @@
-import { ILocation } from '@/src/utils/models';
+import { Location } from '@/src/utils/models';
 import { createContext, useEffect, useState } from 'react';
 import { locationRequest, locationTransform } from './LocationService';
 
 interface LocationContextProps {
-  location: ILocation | null;
+  location: Location | null;
   isLoading: boolean;
   error: any;
   search: (searchKeyword: string) => void;
@@ -16,14 +16,18 @@ export const LocationContext = createContext<LocationContextProps>(
 );
 
 export const LocationProvider = ({ children }: any) => {
-  const [keyword, setKeyword] = useState('san francisco');
-  const [location, setLocations] = useState<ILocation | null>(null);
+  const [keyword, setKeyword] = useState('San Francisco');
+  const [location, setLocations] = useState<Location | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
   const onSearch = (searchKeyword: string) => {
     setIsLoading(true);
     setKeyword(searchKeyword);
+    if (!searchKeyword.length) {
+      // don't do anything
+      return;
+    }
     locationRequest(searchKeyword.toLocaleLowerCase())
       .then(locationTransform)
       .then((res) => {
@@ -35,10 +39,6 @@ export const LocationProvider = ({ children }: any) => {
         setError(err);
       });
   };
-
-  useEffect(() => {
-    onSearch(keyword);
-  }, []);
 
   return (
     <LocationContext.Provider

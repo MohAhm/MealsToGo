@@ -97,18 +97,13 @@ export interface Restaurant {
 }
 
 interface Geometry {
-  location: ILocation;
+  location: Location;
   viewport: Viewport;
 }
 
-export interface ILocation {
-  lat: number;
-  lng: number;
-}
-
 interface Viewport {
-  northeast: ILocation;
-  southwest: ILocation;
+  northeast: Location;
+  southwest: Location;
 }
 
 interface OpeningHours {
@@ -122,7 +117,7 @@ interface PlusCode {
 
 // ---------------- Location ---------------- //
 
-export interface Location {
+export interface LocationResult {
   results: {
     geometry: {
       location: {
@@ -145,5 +140,10 @@ export interface Location {
 }
 
 export interface LocationsResponse {
-  [key: string]: Location;
+  [key: string]: LocationResult;
+}
+
+export interface Location {
+  lat: number;
+  lng: number;
 }

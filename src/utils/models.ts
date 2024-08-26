@@ -82,7 +82,7 @@ export interface Restaurant {
   name: string;
   openingHours?: OpeningHours;
   photos: string[];
-  placeId: string;
+  address: string;
   plusCode: PlusCode;
   priceLevel?: number;
   rating: number;

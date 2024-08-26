@@ -28,7 +28,7 @@ export const RestaurantInfoCard = ({ restaurant }: Props) => {
     photos = [
       'https://www.foodiesfeed.com/wp-content/uploads/2019/06/top-view-for-box-of-2-burgers-home-made-600x899.jpg',
     ],
-    placeId = '100 some random street',
+    address = '100 some random street',
     isOpenNow = true,
     rating = 4,
     isClosedTemporarily = true,
@@ -59,7 +59,7 @@ export const RestaurantInfoCard = ({ restaurant }: Props) => {
             </Spacer>
           </SectionEnd>
         </Section>
-        <Address>{placeId}</Address>
+        <Address>{address}</Address>
       </Info>
     </RestaurantCard>
   );

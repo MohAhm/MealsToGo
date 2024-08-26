@@ -1,5 +1,5 @@
 import { Location } from '@/src/utils/models';
-import { createContext, useEffect, useState } from 'react';
+import { createContext, useState } from 'react';
 import { locationRequest, locationTransform } from './LocationService';
 
 interface LocationContextProps {

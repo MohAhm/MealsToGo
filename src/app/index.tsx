@@ -72,8 +72,8 @@ export default function Index() {
           <RestaurantProvider>
             <Tab.Navigator screenOptions={createScreenOptions}>
               <Tab.Screen name="Restaurant" component={RestaurantScreen} />
-              <Tab.Screen name="Settings" component={Settings} />
               <Tab.Screen name="Map" component={Map} />
+              <Tab.Screen name="Settings" component={Settings} />
             </Tab.Navigator>
           </RestaurantProvider>
         </LocationProvider>

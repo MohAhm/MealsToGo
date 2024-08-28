@@ -1,5 +1,5 @@
 import { Location } from '@/src/utils/models';
-import { createContext, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import { locationRequest, locationTransform } from './LocationService';
 
 interface LocationContextProps {
@@ -24,11 +24,14 @@ export const LocationProvider = ({ children }: any) => {
   const onSearch = (searchKeyword: string) => {
     setIsLoading(true);
     setKeyword(searchKeyword);
-    if (!searchKeyword.length) {
+  };
+
+  useEffect(() => {
+    if (!keyword.length) {
       // don't do anything
       return;
     }
-    locationRequest(searchKeyword.toLocaleLowerCase())
+    locationRequest(keyword.toLocaleLowerCase())
       .then(locationTransform)
       .then((res) => {
         setIsLoading(false);
@@ -38,7 +41,7 @@ export const LocationProvider = ({ children }: any) => {
         setIsLoading(false);
         setError(err);
       });
-  };
+  }, [keyword]);
 
   return (
     <LocationContext.Provider

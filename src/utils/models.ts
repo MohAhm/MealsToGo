@@ -94,6 +94,7 @@ export interface Restaurant {
   permanentlyClosed?: boolean;
   isOpenNow?: boolean;
   isClosedTemporarily?: boolean;
+  placeId: string;
 }
 
 interface Geometry {

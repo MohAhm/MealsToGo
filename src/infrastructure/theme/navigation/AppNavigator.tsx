@@ -7,6 +7,7 @@ import { RouteProp } from '@react-navigation/native';
 import React from 'react';
 import { Text } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { RestaurantNavigator } from './RestaurantNavigator';
 
 type BottomTabRouteProp = RouteProp<BottomTabParamList>;
 
@@ -39,7 +40,7 @@ export const AppNavigator = () => {
   return (
     <SafeAreaProvider>
       <Tab.Navigator screenOptions={createScreenOptions}>
-        <Tab.Screen name="Restaurant" component={RestaurantScreen} />
+        <Tab.Screen name="Restaurant" component={RestaurantNavigator} />
         <Tab.Screen name="Map" component={Map} />
         <Tab.Screen name="Settings" component={Settings} />
       </Tab.Navigator>

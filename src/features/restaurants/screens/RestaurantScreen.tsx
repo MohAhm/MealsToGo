@@ -5,6 +5,7 @@ import { Restaurant, RootStackParamList } from '@/src/utils/models';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { useContext } from 'react';
 import { FlatList, ListRenderItemInfo, Pressable } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import { ActivityIndicator, MD2Colors } from 'react-native-paper';
 import styled from 'styled-components/native';
 import { RestaurantInfoCard } from '../components/RestaurantInfoCard/RestaurantInfoCard';
@@ -41,11 +42,13 @@ export const RestaurantScreen = ({ navigation }: Props) => {
         data={restaurants}
         renderItem={({ item }: ListRenderItemInfo<Restaurant>) => {
           return (
-            <Pressable onPress={() => navigation.navigate('RestaurantDetail')}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('RestaurantDetail')}
+            >
               <Spacer position="bottom" size="large">
                 <RestaurantInfoCard restaurant={item} />
               </Spacer>
-            </Pressable>
+            </TouchableOpacity>
           );
         }}
         keyExtractor={(item: any) => {

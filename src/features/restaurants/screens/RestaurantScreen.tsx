@@ -1,8 +1,10 @@
+import { Spacer } from '@/src/components/Spacer/Spacer';
 import { SafeArea } from '@/src/components/utility/SafeArea';
 import { RestaurantContext } from '@/src/services/restaurant/RestaurantContext';
-import { Restaurant } from '@/src/utils/models';
+import { Restaurant, RootStackParamList } from '@/src/utils/models';
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { useContext } from 'react';
-import { FlatList, ListRenderItemInfo } from 'react-native';
+import { FlatList, ListRenderItemInfo, Pressable } from 'react-native';
 import { ActivityIndicator, MD2Colors } from 'react-native-paper';
 import styled from 'styled-components/native';
 import { RestaurantInfoCard } from '../components/RestaurantInfoCard/RestaurantInfoCard';
@@ -22,7 +24,9 @@ const LoadingContainer = styled.View`
   left: 50%;
 `;
 
-export const RestaurantScreen = () => {
+type Props = NativeStackScreenProps<RootStackParamList, 'Restaurants'>;
+
+export const RestaurantScreen = ({ navigation }: Props) => {
   const { isLoading, restaurants } = useContext(RestaurantContext);
 
   return (
@@ -35,9 +39,15 @@ export const RestaurantScreen = () => {
       <Search />
       <RestaurantList
         data={restaurants}
-        renderItem={({ item }: ListRenderItemInfo<Restaurant>) => (
-          <RestaurantInfoCard restaurant={item} />
-        )}
+        renderItem={({ item }: ListRenderItemInfo<Restaurant>) => {
+          return (
+            <Pressable onPress={() => navigation.navigate('RestaurantDetail')}>
+              <Spacer position="bottom" size="large">
+                <RestaurantInfoCard restaurant={item} />
+              </Spacer>
+            </Pressable>
+          );
+        }}
         keyExtractor={(item: any) => {
           return item.name;
         }}

@@ -22,6 +22,11 @@ export const TAB_ICON = {
 
 export type TabValue = 'restaurant' | 'settings' | 'map';
 
+export type RootStackParamList = {
+  Restaurants: undefined;
+  RestaurantDetail: undefined;
+};
+
 // ---------------- Restaurant ---------------- //
 
 export interface RestaurantResponse {

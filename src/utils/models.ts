@@ -24,7 +24,7 @@ export type TabValue = 'restaurant' | 'settings' | 'map';
 
 export type RootStackParamList = {
   Restaurants: undefined;
-  RestaurantDetail: undefined;
+  RestaurantDetail: { restaurant: any };
 };
 
 // ---------------- Restaurant ---------------- //

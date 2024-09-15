@@ -1,3 +1,4 @@
+import { RestaurantDetailScreen } from '@/src/features/restaurants/screens/RestaurantDetailScreen';
 import { RestaurantScreen } from '@/src/features/restaurants/screens/RestaurantScreen';
 import { RootStackParamList } from '@/src/utils/models';
 import {
@@ -20,7 +21,7 @@ export const RestaurantNavigator = () => {
       <RestaurantStack.Screen name="Restaurants" component={RestaurantScreen} />
       <RestaurantStack.Screen
         name="RestaurantDetail"
-        component={() => <Text>Restaurant Detail</Text>}
+        component={RestaurantDetailScreen}
       />
     </RestaurantStack.Navigator>
   );

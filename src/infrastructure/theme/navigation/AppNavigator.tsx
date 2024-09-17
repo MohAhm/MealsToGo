@@ -1,4 +1,5 @@
 import { SafeArea } from '@/src/components/utility/SafeArea';
+import { MapScreen } from '@/src/features/map/screens/MapScreen';
 import { RestaurantScreen } from '@/src/features/restaurants/screens/RestaurantScreen';
 import { BottomTabParamList, TAB_ICON, TabValue } from '@/src/utils/models';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -16,11 +17,6 @@ const Tab = createBottomTabNavigator<BottomTabParamList>();
 const Settings = () => (
   <SafeArea>
     <Text>Settings</Text>
-  </SafeArea>
-);
-const Map = () => (
-  <SafeArea>
-    <Text>Map</Text>
   </SafeArea>
 );
 
@@ -41,7 +37,7 @@ export const AppNavigator = () => {
     <SafeAreaProvider>
       <Tab.Navigator screenOptions={createScreenOptions}>
         <Tab.Screen name="Restaurant" component={RestaurantNavigator} />
-        <Tab.Screen name="Map" component={Map} />
+        <Tab.Screen name="Map" component={MapScreen} />
         <Tab.Screen name="Settings" component={Settings} />
       </Tab.Navigator>
     </SafeAreaProvider>

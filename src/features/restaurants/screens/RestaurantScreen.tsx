@@ -4,7 +4,7 @@ import { RestaurantContext } from '@/src/services/restaurant/RestaurantContext';
 import { Restaurant, RootStackParamList } from '@/src/utils/models';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { useContext } from 'react';
-import { FlatList, ListRenderItemInfo, Pressable } from 'react-native';
+import { FlatList, ListRenderItemInfo } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { ActivityIndicator, MD2Colors } from 'react-native-paper';
 import styled from 'styled-components/native';
